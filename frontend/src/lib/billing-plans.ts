@@ -40,7 +40,9 @@ export function getPublicBillingPlans(): PublicBillingPlan[] {
   const proYoutubeMinutes = parseInt(process.env.NEXT_PUBLIC_PRO_YOUTUBE_MAX_MINUTES || "90", 10);
   const scaleYoutubeMinutes = parseInt(process.env.NEXT_PUBLIC_SCALE_YOUTUBE_MAX_MINUTES || "180", 10);
 
-  return [
+  return []; // DSclips personal edition: no paid plan cards
+
+  /* return [
     {
       id: "pro",
       name: "Pro",
@@ -71,7 +73,7 @@ export function getPublicBillingPlans(): PublicBillingPlan[] {
       cta: "Upgrade to Scale",
       highlighted: false,
     },
-  ];
+  ]; */
 }
 
 export function formatMinutes(minutes: number): string {
