@@ -13,6 +13,7 @@ import { Select, SelectContent, SelectTrigger, SelectValue } from "@/components/
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { useSession } from "@/lib/auth-client";
+import { monetizationEnabled } from "@/lib/monetization";
 import { formatBillingPlanName, formatMinutes, getPublicBillingPlans, isPaidBillingPlan, type BillingPlanId } from "@/lib/billing-plans";
 import { UpgradeNudge, getUpgradeState } from "@/components/billing/upgrade-prompt";
 import { startUpgrade } from "@/lib/start-upgrade";
@@ -376,7 +377,7 @@ export default function SettingsPage() {
           </div>
         </Section>
 
-        {billingSummary?.monetization_enabled && (
+        {monetizationEnabled && billingSummary?.monetization_enabled && (
           <Section id="plan" icon={<CreditCard className="size-4" />} title="Plan & billing" description={isPaidBillingPlan(billingSummary.plan) ? "Manage your subscription and invoices." : "Pick the plan that fits how much you clip."}>
             <div className="space-y-4">
               <div className="rounded-xl bg-muted/50 p-4">
