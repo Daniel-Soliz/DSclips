@@ -120,8 +120,8 @@ class Config:
             os.getenv("PROCESSING_TASK_TIMEOUT_SECONDS", "14400")
         )
 
-        self.self_host = self._get_bool_env("SELF_HOST", True)
-        self.monetization_enabled = not self.self_host
+        self.self_host = True  # DSclips: permanently self-hosted personal edition
+        self.monetization_enabled = False  # Never require a paid subscription
         self.backend_auth_secret = self._get_optional_env("BACKEND_AUTH_SECRET")
         self.allow_unsigned_backend_auth = self._get_bool_env(
             "ALLOW_UNSIGNED_BACKEND_AUTH", False
