@@ -1,0 +1,30 @@
+name: Import SupoClip into DSclips
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/import-supoclip.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out DSclips
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Clone complete upstream source
+        run: git clone --depth 1 https://github.com/FujiwaraChoki/supoclip.git /tmp/supoclip
+      - name: Import all tracked project files, including assets and license
+        run: |
+          rsync -a --exclude='.git/' /tmp/supoclip/ ./
+          git add -A
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Import complete SupoClip source (AGPL-3.0)'
+            git push origin HEAD:main
+          fi
