@@ -627,7 +627,7 @@ export default function HomeApp() {
         </section>
       </main>
       <UpgradeDialog
-        open={upgradeReason !== null}
+        open={false}
         onOpenChange={(open) => { if (!open) setUpgradeReason(null); }}
         reason={upgradeReason ?? lastUpgradeReason}
         billing={billingSummary}
