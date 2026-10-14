@@ -317,7 +317,7 @@ export default function HomeApp() {
             Drop in a long video. Get back captioned, ready-to-post clips.
           </p>
 
-          {upgradeState && <PlanStatusNudge state={upgradeState} onUpgrade={openUpgrade} />}
+          {/* DSclips personal edition: no subscription banners or plan prompts. */}
 
           <VideoDownloadStatus />
 
